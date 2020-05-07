@@ -1,95 +1,33 @@
-<h1>Day Planner</h1>
+<div class="row text-center">
+    <div class="col-md-6">
+      <h4>Ready to eat!</h4>
+      <div id="ready_to_eat">
+        {{#each burgers}}
+          {{#unless devoured}}
+          <form action="burger/eat/{{id}}" method="POST">
+            <div class="input-group">
+              <li class="form-control">{{id}}. {{burger_name}}</li>
+                <span class="input-group-btn">
+                  <button class="btn btn-danger devour-button" type="submit">Devour It!</button>
+                </span>
+            </div>
+          </form>
+          {{/unless}}
+        {{/each}}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Already eaten!</h4>
+      <div id="already_eaten">
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <div class="input-group">
+              <li class="form-control">{{this.id}}. {{this.burger_name}}</li>
+            </div>
+          {{/if}}
+        {{/each}}
 
-<ul>
-  {{#each watchlist}}
-  <li>
-    <p>
-      {{this.id}}. {{this.watch}}
-
-      <button data-planid="{{this.id}}" class="delplan">Delete Plan!</button>
-    </p>
-  </li>
-  {{/each}}
-</ul>
-
-<h2>Create a Plan</h2>
-<form id="createplan" class="button-size">
-  <textarea type="text" name="plan"></textarea>
-  <button type="submit">Save Plan!</button>
-</form>
-
-<h2>Update a Plan</h2>
-<form id="updateplan" class="button-size">
-  <select name="id">
-		{{#each watchlist}}
-			<option value="{{this.id}}">{{this.watch}}</option>
-		{{/each}}
-	</select>
-  <textarea type="text" name="plan" placeholder="plan"></textarea>
-  <button type="submit">Update Plan!</button>
-</form>
-
-<script type="text/javascript">
-  $(".delplan").on("click", function(event) {
-    // Get the ID from the button.
-    // This is shorthand for $(this).attr("data-planid")
-    var id = $(this).data("planid");
-
-    // Send the DELETE request.
-    $.ajax("/api/plans/" + id, {
-      type: "DELETE"
-    }).then(
-      function() {
-        console.log("deleted id ", id);
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-
-  $("#createplan").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-
-    // [name=plan] will find an element with a "name" attribute equal to the string "plan"
-    var newPlan = {
-      plan: $("#createplan [name=plan]").val().trim()
-    };
-
-    // Send the POST request.
-    $.ajax("/api/plans", {
-      type: "POST",
-      data: newPlan
-    }).then(
-      function() {
-        console.log("created new plan");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-
-  $("#updateplan").on("submit", function(event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-
-    // Get the ID by finding an element with a "name" attribute equal to the string "id"
-    var id = $("[name=id]").val().trim();
-
-    var updatedPlan = {
-      plan: $("#updateplan [name=plan]").val().trim()
-    };
-
-    // Send the PUT request.
-    $.ajax("/api/plans/" + id, {
-      type: "PUT",
-      data: updatedPlan
-    }).then(
-      function() {
-        console.log("updated id ", id);
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
-  });
-</script>
+      </div>
+    </div>
+  </center>
+</div>

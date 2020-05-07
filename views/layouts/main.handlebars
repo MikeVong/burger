@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Day planner!</title>
-  <script src="https://code.jquery.com/jquery.js"></script>
-</head>
-<body>
-  {{{ body }}}
-</body>
+	<meta charset="UTF-8">
+		<link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<title>Burgers</title>
+		<script src="https://code.jquery.com/jquery.js"></script>
+		
+	</head>
+	<body>
+    <div class="container" id="main">
+      <div class="text-center">
+			<img src="/assets/img/burger.png">
+			<h1 class="text-danger">Eat da Burger!</h1>
+	  </div>
+
+ 		{{{body}}}
+     
+      <form action="burger/create" method="POST"> 
+        
+        <div class="row">
+
+          <div class="col-md-4"></div> 
+
+          <div class="form-group col-md-4">
+            <center><label for="new_burger" class="red_font">Request a new burger and place your order!</label></center>
+            <textarea class="form-control" columns="8" rows="2" id="new_burger" name="burger_name"></textarea>
+          </div>
+
+          <div class="col-md-4"></div> 
+        </div>
+
+        <center>
+          <button id="submit-button" type="submit" class="btn btn-success">Place Order</button>
+        </center>
+
+      </form>
+
+      <br>
+
+    </div>
+
+    <!-- Link in jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+  </body>
+</html>
+	</body>
 </html>
